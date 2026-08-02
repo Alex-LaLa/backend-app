@@ -16,8 +16,8 @@ public class CorsConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(
-                List.of("https://frontend-7v7f979yq-aelx.vercel.app")
+        configuration.setAllowedOriginPatterns(
+                List.of("*")
         );
 
         configuration.setAllowedMethods(
@@ -34,7 +34,7 @@ public class CorsConfig {
                 List.of("*")
         );
 
-        configuration.setAllowCredentials(true);
+        configuration.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
