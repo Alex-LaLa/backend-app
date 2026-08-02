@@ -7,9 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/mensajes")
-@CrossOrigin(
-        origins = "https://frontend-qyejo8f0p-aelx.vercel.app"
-)
+@CrossOrigin(origins = "${FRONTEND_URL}")
 public class SaludoController {
 
     private final MensajeRepository repository;

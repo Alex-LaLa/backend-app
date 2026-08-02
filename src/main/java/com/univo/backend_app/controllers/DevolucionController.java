@@ -10,9 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/devoluciones")
-@CrossOrigin(
-        origins = "https://frontend-qyejo8f0p-aelx.vercel.app"
-)
+@CrossOrigin(origins = "${FRONTEND_URL}")
 public class DevolucionController {
 
     private final DevolucionRepository devolucionRepository;
