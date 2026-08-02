@@ -17,7 +17,7 @@ public class CorsConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("https://frontend-an32tfpyy-aelx.vercel.app")
+                List.of("https://frontend-7v7f979yq-aelx.vercel.app")
         );
 
         configuration.setAllowedMethods(
