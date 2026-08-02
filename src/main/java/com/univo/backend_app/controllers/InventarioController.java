@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/inventario")
-@CrossOrigin(origins = "http://localhost:4200")
 public class InventarioController {
 
     private final InventarioRepository inventarioRepository;

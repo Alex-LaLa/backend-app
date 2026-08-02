@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/detalle-orden")
-@CrossOrigin(origins = "http://localhost:4200")
 public class DetalleOrdenController {
 
     private final DetalleOrdenRepository detalleOrdenRepository;

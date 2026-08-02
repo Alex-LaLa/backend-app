@@ -7,7 +7,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/mensajes")
-@CrossOrigin(origins = "http://localhost:4200") // Permite al frontend acceder
 public class SaludoController {
 
     private final MensajeRepository repository;
