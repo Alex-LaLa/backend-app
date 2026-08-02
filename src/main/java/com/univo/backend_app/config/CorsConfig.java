@@ -14,13 +14,13 @@ public class CorsConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration configuration = new CorsConfiguration();
+        CorsConfiguration config = new CorsConfiguration();
 
-        configuration.setAllowedOriginPatterns(
-                List.of("*")
+        config.setAllowedOriginPatterns(
+                List.of("https://*.vercel.app")
         );
 
-        configuration.setAllowedMethods(
+        config.setAllowedMethods(
                 List.of(
                         "GET",
                         "POST",
@@ -30,16 +30,17 @@ public class CorsConfig {
                 )
         );
 
-        configuration.setAllowedHeaders(
+        config.setAllowedHeaders(
                 List.of("*")
         );
 
-        configuration.setAllowCredentials(false);
+        config.setAllowCredentials(true);
+
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
 
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", config);
 
         return source;
     }
