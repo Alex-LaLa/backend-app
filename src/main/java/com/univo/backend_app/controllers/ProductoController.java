@@ -12,6 +12,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/productos")
+@CrossOrigin(
+        origins = "https://frontend-qyejo8f0p-aelx.vercel.app"
+)
 public class ProductoController {
 
     private final ProductoRepository productoRepository;

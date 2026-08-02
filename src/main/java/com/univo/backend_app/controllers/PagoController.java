@@ -10,6 +10,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pagos")
+@CrossOrigin(
+        origins = "https://frontend-qyejo8f0p-aelx.vercel.app"
+)
 public class PagoController {
 
     private final PagoRepository pagoRepository;

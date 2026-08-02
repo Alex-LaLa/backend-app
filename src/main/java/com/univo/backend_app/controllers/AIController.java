@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/ai")
+@CrossOrigin(
+        origins = "https://frontend-qyejo8f0p-aelx.vercel.app"
+)
 public class AIController {
 
     private final AIService aiService;

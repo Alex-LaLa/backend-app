@@ -10,6 +10,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/detalle-orden")
+@CrossOrigin(
+        origins = "https://frontend-qyejo8f0p-aelx.vercel.app"
+)
 public class DetalleOrdenController {
 
     private final DetalleOrdenRepository detalleOrdenRepository;
