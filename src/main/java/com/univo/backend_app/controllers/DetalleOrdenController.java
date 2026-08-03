@@ -26,6 +26,14 @@ public class DetalleOrdenController {
         return detalleOrdenRepository.findById(id);
     }
 
+    @GetMapping("/orden/{id}")
+    public List<DetalleOrden> obtenerPorOrden(
+            @PathVariable Long id){
+
+        return detalleOrdenRepository.findByOrdenId(id);
+
+    }
+
     @PostMapping
     public DetalleOrden crearDetalle(@Valid @RequestBody DetalleOrden detalleOrden) {
         return detalleOrdenRepository.save(detalleOrden);

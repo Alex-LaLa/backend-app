@@ -32,6 +32,7 @@ public class DetalleOrden {
     @NotNull(message = "El precio unitario es obligatorio.")
     @Positive(message = "El precio unitario debe ser mayor que cero.")
     private Double precioUnitario;
+    private Double subtotal;
     // ==========================
     // CONSTRUCTORES
     // ==========================
@@ -44,12 +45,14 @@ public class DetalleOrden {
     public DetalleOrden(Orden orden,
                         Producto producto,
                         Integer cantidad,
-                        Double precioUnitario) {
+                        Double precioUnitario,
+                        Double subtotal) {
 
         this.orden = orden;
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
+        this.subtotal = subtotal;
     }
 
     // ==========================
@@ -76,6 +79,10 @@ public class DetalleOrden {
         return precioUnitario;
     }
 
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
     // ==========================
     // SETTERS (Modificar información)
     // ==========================
@@ -94,5 +101,9 @@ public class DetalleOrden {
 
     public void setPrecioUnitario(Double precioUnitario) {
         this.precioUnitario = precioUnitario;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
     }
 }

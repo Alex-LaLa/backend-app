@@ -47,6 +47,12 @@ public class ProductoController {
         return productoRepository.findById(id);
     }
 
+    @GetMapping("/disponibles")
+    public List<Producto> obtenerProductosDisponibles() {
+
+        return productoRepository.findProductosDisponibles();
+
+    }
     // ==========================
     // POST - Crear un producto
     // ==========================
