@@ -50,6 +50,29 @@ public class DashboardService {
                         .sum()
         );
 
+        List<String> categorias = new ArrayList<>();
+        List<Long> cantidades = new ArrayList<>();
+
+        List<Producto> productos = productoRepository.findAll();
+
+        categoriaRepository.findAll().forEach(categoria -> {
+
+            categorias.add(categoria.getNombre());
+
+            long cantidad = productos.stream()
+                    .filter(p ->
+                            p.getCategoria() != null &&
+                                    p.getCategoria().getId().equals(categoria.getId()))
+                    .count();
+
+            cantidades.add(cantidad);
+
+        });
+
+        dto.setCategorias(categorias);
+
+        dto.setCantidades(cantidades);
+
         return dto;
 
     }
