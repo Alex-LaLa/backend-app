@@ -34,7 +34,7 @@ public class ProductoController {
 
     @GetMapping
     public List<Producto> obtenerProductos() {
-        return productoRepository.findByActivoTrue();
+        return productoRepository.findAll();
     }
 
     // ==========================

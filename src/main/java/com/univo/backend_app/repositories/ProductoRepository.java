@@ -12,12 +12,12 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
 
     @Query("""
-    SELECT i.producto
-    FROM Inventario i
-    WHERE i.unidadesDisponibles > 0
-    """)
+SELECT i.producto
+FROM Inventario i
+WHERE i.unidadesDisponibles > 0
+AND i.producto.activo = true
+""")
     List<Producto> findProductosDisponibles();
-
 
     List<Producto> findByActivoTrue();
 
