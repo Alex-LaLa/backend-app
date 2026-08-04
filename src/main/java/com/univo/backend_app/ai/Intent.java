@@ -20,6 +20,8 @@ public enum Intent {
 
     BUSINESS_SUMMARY,
 
+    GREETING,
+
     UNKNOWN
 
 }

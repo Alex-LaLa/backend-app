@@ -14,7 +14,7 @@ public class Categoria {
     @NotBlank(message = "El nombre de la categoría es obligatorio.")
     private String nombre;
 
-    private Boolean activo;
+    private Boolean activo = true;
 
 
     // Constructor vacío

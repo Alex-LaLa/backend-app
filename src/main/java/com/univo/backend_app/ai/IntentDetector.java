@@ -24,7 +24,7 @@ public class IntentDetector {
             Intent.LOW_STOCK,
             List.of(
                     "stock",
-                    "inventario",
+                    "bajo stock",
                     "agot",
                     "reabaste",
                     "comprar",
@@ -102,14 +102,38 @@ public class IntentDetector {
                     "estado general",
                     "informe del negocio",
                     "situación del negocio"
+            ),
+            Intent.GREETING,
+            List.of(
+                    "hola",
+                    "buenas",
+                    "buenos dias",
+                    "buenos días",
+                    "buenas tardes",
+                    "buenas noches",
+                    "hey",
+                    "hi"
             )
-
     );
 
 
     public Intent detect(String question){
 
         String text = question.toLowerCase();
+
+
+        // Saludos
+        if(text.contains("hola")
+                || text.contains("buenas")
+                || text.contains("buenos dias")
+                || text.contains("buenos días")
+                || text.contains("buenas tardes")
+                || text.contains("buenas noches")
+                || text.contains("hey")
+                || text.contains("hi")){
+
+            return Intent.GREETING;
+        }
 
 
         // 1. Reglas específicas

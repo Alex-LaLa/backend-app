@@ -38,54 +38,98 @@ public class VentaService {
                 .orElseThrow(() ->
                         new RuntimeException("Cliente no encontrado"));
 
+
+        double total = 0;
+
+
+        // Primero calculamos y validamos todo
+        for (VentaItemRequest item : request.getProductos()) {
+
+            Producto producto = productoRepository
+                    .findById(item.getProductoId())
+                    .orElseThrow(() ->
+                            new RuntimeException("Producto no encontrado"));
+
+
+            Inventario inventario = inventarioRepository
+                    .findByProductoId(producto.getId())
+                    .orElseThrow(() ->
+                            new RuntimeException("Inventario no encontrado"));
+
+
+            if (inventario.getUnidadesDisponibles() < item.getCantidad()) {
+
+                throw new RuntimeException(
+                        "No hay suficiente inventario para "
+                                + producto.getNombre()
+                );
+
+            }
+
+
+            total += producto.getPrecio() * item.getCantidad();
+
+        }
+
+
+
+        // Ahora sí creamos la orden
         Orden orden = new Orden();
 
         orden.setCliente(cliente);
 
         orden.setEstado("COMPLETADA");
 
-        orden.setTotal(0.0);
+        orden.setTotal(total);
+
 
         orden = ordenRepository.save(orden);
 
-        double total = 0;
+
+
+        // Guardamos detalles y actualizamos inventario
         for (VentaItemRequest item : request.getProductos()) {
+
+
             Producto producto = productoRepository
                     .findById(item.getProductoId())
-                    .orElseThrow(() ->
-                            new RuntimeException("Producto no encontrado"));
+                    .orElseThrow();
+
 
             Inventario inventario = inventarioRepository
                     .findByProductoId(producto.getId())
-                    .orElseThrow(() ->
-                            new RuntimeException("Inventario no encontrado"));
-            if (inventario.getUnidadesDisponibles() < item.getCantidad()) {
-                throw new RuntimeException(
-                        "No hay suficiente inventario para " + producto.getNombre()
-                );
-            }
+                    .orElseThrow();
+
 
             inventario.setUnidadesDisponibles(
-                    inventario.getUnidadesDisponibles() - item.getCantidad()
+                    inventario.getUnidadesDisponibles()
+                            - item.getCantidad()
             );
 
+
             inventarioRepository.save(inventario);
-            double subtotal = producto.getPrecio() * item.getCantidad();
+
+
 
             DetalleOrden detalle = new DetalleOrden();
 
             detalle.setOrden(orden);
+
             detalle.setProducto(producto);
+
             detalle.setCantidad(item.getCantidad());
+
             detalle.setPrecioUnitario(producto.getPrecio());
-            detalle.setSubtotal(subtotal);
+
+            detalle.setSubtotal(
+                    producto.getPrecio() * item.getCantidad()
+            );
+
 
             detalleOrdenRepository.save(detalle);
 
-            total += subtotal;
         }
-        orden.setTotal(total);
-        ordenRepository.save(orden);
+
     }
 
 }

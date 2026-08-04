@@ -27,28 +27,35 @@ public class IntentClassifierAI {
                 .call()
                 .content();
 
-        if (response == null) {
+
+        if(response == null){
             return Intent.UNKNOWN;
         }
 
+
         response = response
-                .replace(".", "")
                 .trim()
-                .toUpperCase();
+                .toUpperCase()
+                .replace(".", "");
+
 
         System.out.println("Intent detectado por IA: " + response);
 
-        try {
 
-            return Intent.valueOf(response);
+        for(Intent intent : Intent.values()){
 
-        } catch (IllegalArgumentException e) {
+            if(response.contains(intent.name())){
 
-            System.out.println("No fue posible interpretar el intent: " + response);
+                return intent;
 
-            return Intent.UNKNOWN;
+            }
 
         }
+
+
+        System.out.println("No fue posible interpretar el intent: " + response);
+
+        return Intent.UNKNOWN;
 
     }
 
