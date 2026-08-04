@@ -34,7 +34,7 @@ public class ProductoController {
 
     @GetMapping
     public List<Producto> obtenerProductos() {
-        return productoRepository.findAll();
+        return productoRepository.findByActivoTrue();
     }
 
     // ==========================
@@ -93,7 +93,14 @@ public class ProductoController {
     //Ej. DELETE /productos/1
 
     @DeleteMapping("/{id}")
-    public void eliminarProducto(@PathVariable Long id) {
-        productoRepository.deleteById(id);
+    public Producto eliminarProducto(@PathVariable Long id) {
+
+        Producto producto = productoRepository
+                .findById(id)
+                .orElseThrow();
+
+        producto.setActivo(false);
+
+        return productoRepository.save(producto);
     }
 }

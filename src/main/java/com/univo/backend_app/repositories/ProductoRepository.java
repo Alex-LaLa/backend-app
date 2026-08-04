@@ -9,10 +9,16 @@ import java.util.List;
 
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
+
+
     @Query("""
-SELECT i.producto
-FROM Inventario i
-WHERE i.unidadesDisponibles > 0
-""")
+    SELECT i.producto
+    FROM Inventario i
+    WHERE i.unidadesDisponibles > 0
+    """)
     List<Producto> findProductosDisponibles();
+
+
+    List<Producto> findByActivoTrue();
+
 }
